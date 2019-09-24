@@ -1,5 +1,6 @@
 #pragma once
 #include <tuple> // for std::tie
+#include <cmath> // for std::sqrt
 
 namespace cdm
 {
@@ -7,8 +8,17 @@ namespace cdm
 	class Vector2
 	{
 	public:
-		T x;
-		T y;
+		union {
+			struct {
+				T x;
+				T y;
+			};
+
+			struct {
+				T u;
+				T v;
+			};
+		};
 
 		Vector2(): x(0), y(0) {}
 		Vector2(T _x, T _y): x(_x), y(_y) {}
@@ -33,5 +43,11 @@ namespace cdm
 		bool operator >  (const Vector2& other) { return other < *this; }
 		bool operator <= (const Vector2& other) { return !(*this > other); }
 		bool operator >= (const Vector2& other) { return !(*this > other); }
+
+		// Indexing operator
+		T& operator [] (size_t index) { return (&this->x)[index % 2]; }
+
+		T magnitude() { return std::sqrt(this->x * this->x + this->y * this->y); }
+		T dot_product(const Vector2& other) { return this->x * other.x + this->y * other.y; }
 	};
 }

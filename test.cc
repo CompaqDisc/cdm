@@ -49,5 +49,10 @@ int main(void)
 	// Test compound assignment operators
 	// Test relational operators
 
+
+	cdm::Vector2<float> v2(0.10f, 0.20f);
+	std::cout << v2[0] << ", " << v2[1] << std::endl;
+	std::cout << v2.magnitude() << std::endl;
+
 	return 0;
 }
