@@ -1,4 +1,5 @@
-#include "cdm/Vector2.h"
+#include "cdm/vec2.h"
+#include "cdm/vec3.h"
 #include <iostream>
 #include <cassert>
 
@@ -9,7 +10,7 @@ int main(void)
 		// Test default construction.
 		std::cout << "\tDefault:\t";
 
-		cdm::Vector2<float> vDefault;
+		cdm::tvec2<float> vDefault;
 		assert(vDefault.x == 0 && vDefault.y == 0);
 
 		std::cout << "passed." << std::endl;
@@ -18,7 +19,7 @@ int main(void)
 		// Test explicit construction.
 		std::cout << "\tExplicit:\t";
 
-		cdm::Vector2<float> vExplicit(3.14159f, 2.71828f);
+		cdm::tvec2<float> vExplicit(3.14159f, 2.71828f);
 		assert(vExplicit.x == 3.14159f && vExplicit.y == 2.71828f);
 
 		std::cout << "passed." << std::endl;
@@ -31,10 +32,10 @@ int main(void)
 		// Test addition.
 		std::cout << "\tAddition:\t";
 
-		cdm::Vector2<float> v1(0.5f, 0.25f);
-		cdm::Vector2<float> v2(0.25f, 0.5f);
+		cdm::vec2 v1(0.5f, 0.25f);
+		cdm::vec2 v2(0.25f, 0.5f);
 
-		cdm::Vector2<float> v3 = v1 + v2;
+		cdm::vec2 v3 = v1 + v2;
 
 		assert(v3.x == 0.75f && v3.y == 0.75f);
 
@@ -49,10 +50,11 @@ int main(void)
 	// Test compound assignment operators
 	// Test relational operators
 
+	cdm::vec2 t(3.0f, 4.0f);
+	std::cout << t.magnitude() << std::endl;
 
-	cdm::Vector2<float> v2(0.10f, 0.20f);
-	std::cout << v2[0] << ", " << v2[1] << std::endl;
-	std::cout << v2.magnitude() << std::endl;
+	cdm::vec3 pos(1234.0f, 4276.0f, 200.0f);
+	std::cout << pos.x << ", " << pos.y << ", " << pos.z << std::endl;
 
 	return 0;
 }
